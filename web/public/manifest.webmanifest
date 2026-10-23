@@ -1,0 +1,2 @@
+{ "name": "Store", "short_name": "Store", "start_url": "/", "display": "standalone",
+  "background_color": "#f5f8f7", "theme_color": "#0e5a4f", "icons": [] }
