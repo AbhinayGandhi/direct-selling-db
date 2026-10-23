@@ -5,5 +5,6 @@
 - [ ] B2. Not verified: running against real Supabase, real phone layout, PWA offline (only a manifest exists, no service worker, no icons).
 - [ ] C. Customer returns/complaints screens, distributor portal, admin portal
 - [ ] D. Reports + expenses table, Marathi user guide, security & compliance checklists
+- [x] E0. GitHub Pages workflow added (.github/workflows/pages.yml), build verified here with base path; NOT yet run on GitHub
 - [ ] E. GitHub push + Cloudflare Pages connection (owner dashboard steps in README)
 Known limits: no payment gateway (manual verification), login required to order, product images need a public https image URL until Supabase Storage is set up.

@@ -20,7 +20,16 @@ Commission stays OFF. The database refuses to enable it until `compliance_review
 cd web && cp .env.example .env.local   (fill in URL + anon key) && npm install && npm run dev
 Checks: `npm run build` and `npm test`.
 
-## Deploy on Cloudflare Pages (Git integration)
+## Test site on GitHub Pages (first step; testing only, keep live_sales_enabled=false)
+GitHub's terms restrict running a commerce site on Pages, so use it only to preview. Check GitHub's current Pages terms.
+1. Repository Settings -> Pages -> Source: GitHub Actions.
+2. Settings -> Secrets and variables -> Actions -> Variables tab -> New repository variable, add 4:
+   VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY (public anon key only), VITE_APP_MODE=development, VITE_POLICIES_APPROVED=false
+3. Actions tab -> "Deploy to GitHub Pages" -> Run workflow (it also runs on every push to main).
+4. Supabase -> Authentication -> URL Configuration -> Site URL: https://YOURNAME.github.io/REPONAME/
+The workflow runs the tests and the build for you; nothing is installed on your laptop.
+
+## Later: Cloudflare Pages (Git integration)
 Workers & Pages -> Create -> Pages -> Connect to Git -> choose the repository, then:
 - Production branch: main
 - Root directory: `web`
