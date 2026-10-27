@@ -1,7 +1,7 @@
 # Direct Selling Platform (Supabase + React + Cloudflare Pages)
 
 STATUS: Phase A (database) and Phase B (storefront, login, cart, checkout, my orders) done.
-Distributor portal, admin portal, reports are NOT built yet. See PROGRESS.md.
+Phase C (admin screens, distributor portal, returns, complaints) written. Reports/expenses, Marathi user guide, security & compliance checklists are NOT done yet. See PROGRESS.md and docs/TEST_FLOW_MR.md.
 
 ## Folders
 - `supabase/` database migrations (run in filename order), seed (demo only), tests

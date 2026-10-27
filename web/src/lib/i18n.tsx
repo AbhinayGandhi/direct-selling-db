@@ -68,3 +68,6 @@ export const STATUS_LABEL: Record<string, { mr: string; en: string }> = {
   pending_verification: { mr: 'पडताळणी प्रलंबित', en: 'Awaiting verification' }, paid: { mr: 'मिळाले', en: 'Paid' }, failed: { mr: 'अयशस्वी', en: 'Failed' },
   partially_refunded: { mr: 'अंशतः रिफंड', en: 'Partially refunded' },
 }
+
+// Inline bilingual helper for screens with many one-off labels: L('मराठी','English')
+export function useL() { const { lang } = useI18n(); return (mr: string, en: string) => (lang === 'mr' ? mr : en) }

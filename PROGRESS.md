@@ -3,7 +3,8 @@
 - [ ] A2. Functions (orders, payments, commissions) not yet exercised on the real Supabase project.
 - [x] B. Web app source: storefront, bilingual Marathi/English, catalogue + search + categories + pagination, product page, cart, checkout (server-side create_order with idempotency key), login/signup/reset, my orders + cancel, policy pages (draft), contact. `npm run build` OK; 4 unit tests pass.
 - [ ] B2. Not verified: running against real Supabase, real phone layout, PWA offline (only a manifest exists, no service worker, no icons).
-- [ ] C. Customer returns/complaints screens, distributor portal, admin portal
+- [x] C. Source written: admin screens (overview, orders+payment verification+shipping, products+stock, distributors, returns/refunds, commissions+rules, payouts, complaints, settings, users/roles, audit), distributor portal, customer return + complaint screens. `npm run build` OK. Database access used by these screens tested per role on local PostgreSQL (26/26).
+- [ ] C2. NOT verified: these screens running against the real Supabase project and a real phone browser. Admin screens are Marathi/English via inline labels; error messages from the database are English.
 - [ ] D. Reports + expenses table, Marathi user guide, security & compliance checklists
 - [x] E0. GitHub Pages workflow added (.github/workflows/pages.yml), build verified here with base path; NOT yet run on GitHub
 - [ ] E. GitHub push + Cloudflare Pages connection (owner dashboard steps in README)

@@ -49,3 +49,12 @@ input, select, textarea { font: inherit; width: 100%; min-height: 48px; padding:
 .prose { max-width: 62ch; } .prose li { margin: .5em 0; }
 .foot { border-top: 1px solid var(--line); padding: 16px; } .foot nav { display: flex; flex-wrap: wrap; gap: 4px 16px; max-width: 960px; margin: 0 auto; } .foot a { padding: 8px 0; }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+.subnav { display: flex; flex-wrap: wrap; gap: 4px; padding: 8px 16px; background: var(--surface); border-bottom: 1px solid var(--line); }
+.subnav a { padding: 10px 12px; min-height: 44px; display: inline-flex; align-items: center; border-radius: 8px; text-decoration: none; color: var(--ink); }
+.subnav a.active { background: var(--primary); color: var(--primary-ink); }
+.row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.check { display: flex; gap: 10px; align-items: center; min-height: 44px; margin: 6px 0; } .check input { width: 22px; height: 22px; min-height: 0; flex: none; }
+.form.wide { max-width: 640px; margin: 12px 0 20px; }
+.stats .card { align-items: flex-start; } .big { font-size: 1.8rem; display: block; }
+.scroll { overflow-x: auto; } table { border-collapse: collapse; width: 100%; font-size: .9rem; } th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+h2 { font-size: 1.2rem; margin: 1.2em 0 .4em; }

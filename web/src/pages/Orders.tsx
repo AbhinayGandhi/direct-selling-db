@@ -7,13 +7,13 @@ import { Empty, ErrorBox, Loading } from '../components/ui'
 
 interface Order {
   id: string; order_number: string; order_status: string; payment_status: string; total_amount: number; created_at: string
-  tracking_number: string | null; courier_name: string | null; order_items: { product_name_snapshot: string; quantity: number }[]
+  tracking_number: string | null; courier_name: string | null; order_items: { id: string; product_name_snapshot: string; quantity: number }[]
 }
 
 async function load(): Promise<Order[]> {
   if (!supabase) throw new Error('not configured')
   const { data, error } = await supabase.from('orders')
-    .select('id,order_number,order_status,payment_status,total_amount,created_at,tracking_number,courier_name,order_items(product_name_snapshot,quantity)')
+    .select('id,order_number,order_status,payment_status,total_amount,created_at,tracking_number,courier_name,order_items(id,product_name_snapshot,quantity)')
     .order('created_at', { ascending: false }).limit(50)
   if (error) throw error
   return (data ?? []) as Order[]
@@ -28,6 +28,16 @@ export default function Orders() {
   async function cancel(id: string) {
     if (!supabase) return
     const { error } = await supabase.rpc('cancel_my_order', { p_order_id: id, p_reason: 'customer request' })
+    setMsg(error ? error.message : null)
+    list.retry()
+  }
+  async function ret(itemId: string, max: number) {
+    if (!supabase) return
+    const q = Number(window.prompt(`${t('qty')} (1-${max})`, '1'))
+    if (!q) return
+    const reason = window.prompt(lang === 'mr' ? 'परत करण्याचे कारण:' : 'Reason for return:')
+    if (!reason) return
+    const { error } = await supabase.rpc('request_return', { p_order_item_id: itemId, p_quantity: q, p_reason: reason })
     setMsg(error ? error.message : null)
     list.retry()
   }
@@ -46,6 +56,7 @@ export default function Orders() {
             <p>{t('status')}: <strong>{label(o.order_status)}</strong> · {t('payStatus')}: {label(o.payment_status)}</p>
             {o.tracking_number && <p>{t('tracking')}: {o.courier_name} {o.tracking_number}</p>}
             <p><strong>{inr(o.total_amount)}</strong></p>
+            {o.order_status === 'delivered' && o.order_items.map((i) => <button key={i.id} className="btn" onClick={() => ret(i.id, i.quantity)}>{lang === 'mr' ? 'परत करा: ' : 'Return: '}{i.product_name_snapshot}</button>)}
             {['pending', 'confirmed'].includes(o.order_status) && <button className="btn" onClick={() => cancel(o.id)}>{t('cancelOrder')}</button>}
           </li>))}
       </ul>
